@@ -260,3 +260,4 @@ paket-files/
 __pycache__/
 *.pyc
 /Installation/Tools/Android/platform-tools/fastboot.zip
+/Installation/Files

@@ -1,18 +1,9 @@
-function Step
-{
-	param([string]$message) 	
-	Write-Host $message
-	Read-Host 
-}
+. "$PSScriptRoot\Functions.ps1"
 
-function Scripted-Step
-{
-	param([string]$message,[string]$script) 	
-	Step($message)
-	& $script
-}
+Write-Host "Windows ARM 64 installation scripts" -ForegroundColor Green 
+Write-Host "<< You can quite anytime pressing Control+C >>" -ForegroundColor Yellow 
 
-Step "Switch to Mass Storage Mode. Enter when ready."
+Step "Please, switch to Mass Storage Mode. Enter when ready."
 Scripted-Step "Resizing Data Partition" "$($PSScriptRoot)\ResizeDataPartition.ps1"
 Step "a) Please, create partition named 'boot', format ext4, size=4MB inside allocated free space"
 Step "b) Please, create partition named 'uefi_vars', format ext4, size=4MB inside allocated free space"

@@ -36,6 +36,7 @@
     <Compile Include="FlashUefi.ps1" />
     <Compile Include="CreateWindowsPartitions.ps1" />
     <Compile Include="CopyMbnAndEfi.ps1" />
+    <Compile Include="Functions.ps1" />
     <Compile Include="MakeWindowsBootable.ps1" />
     <Compile Include="ResizeDataPartition.ps1" />
     <Compile Include="ModifyBcd.ps1" />

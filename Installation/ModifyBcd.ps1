@@ -1,4 +1,7 @@
-$volume = Get-Volume | Where { $_.FileSystemType -eq 'NTFS' -and $_.FileSystemLabel -eq 'MainOS' } | Select -index 0
+. "$PSScriptRoot\Functions.ps1"
+
+$mainOs = GetMainOS
+$volume = $mainOs.Volume
 $driveLetter = $volume.DriveLetter
 
 $bcdFileName = "$($driveLetter):\EFIESP\EFI\Microsoft\BOOT\bcd"

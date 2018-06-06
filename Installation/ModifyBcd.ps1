@@ -28,6 +28,7 @@ $driveLetter = $volume.DriveLetter
 $bcdFileName = "$($driveLetter):\EFIESP\EFI\Microsoft\BOOT\bcd"
 
 Write-Host "We're going to modify the BCD file at $($bcdFileName)"
+Write-Host "Press ENTER to proceed"
 Read-Host
 
 $guid = CreateShimBcdEntry $bcdFileName

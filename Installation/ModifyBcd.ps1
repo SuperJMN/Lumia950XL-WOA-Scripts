@@ -1,5 +1,26 @@
 . "$PSScriptRoot\Functions.ps1"
 
+function GetBootMgrPartitionPath()
+{
+	$match = & bcdedit /enum `{bootmgr`} | Select-String  "device\s*partition=(?<path>[\w*\\]*)"
+	$bootMgrPartitionPath = $match.Matches[0].Groups[1].Value
+
+	if ($bootMgrPartitionPath -eq $null)
+	{
+		throw "Could not get the partition path of the {bootmgr} BCD entry"
+	}
+
+	return $bootMgrPartitionPath
+}
+
+function CreateShimBcdEntry() 
+{
+	param([string]$bcdFileName)
+	$output = & bcdedit /store $($bcdFileName) /create /d ""BootShim"" /application BOOTAPP
+	$guid = $output|%{$_.split(' ')[2]}
+	return $guid
+}
+
 $mainOs = GetMainOS
 $volume = $mainOs.Volume
 $driveLetter = $volume.DriveLetter
@@ -9,15 +30,9 @@ $bcdFileName = "$($driveLetter):\EFIESP\EFI\Microsoft\BOOT\bcd"
 Write-Host "We're going to modify the BCD file at $($bcdFileName)"
 Read-Host
 
-$x = & bcdedit /store $($bcdFileName) /create /d ""BootShim"" /application BOOTAPP
-$guid = $x|%{$_.split(' ')[2]}
+$guid = CreateShimBcdEntry $bcdFileName
 
-& bcdedit /store $bcdFileName /set $guid path \EFI\boot\BootShim.efi
-
-Write-Host "Please, enter the path to the device partition where the {bootmgr} in the list. Enter to see the list."
-Read-Host
-& bcdedit /store $bcdFileName
-$bootMgrPartitionPath = Read-Host -Prompt "Please, enter the path (the one after 'Device partition=')"
+$bootMgrPartitionPath = GetBootMgrPartitionPath
 
 & bcdedit /store $bcdFileName /set $guid device partition=$bootMgrPartitionPath
 & bcdedit /store $bcdFileName /set `{bootmgr`} displaybootmenu on

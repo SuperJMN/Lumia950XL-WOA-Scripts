@@ -32,6 +32,7 @@
     <Folder Include="Files\Drivers\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateExt4Partitions.ps1" />
     <Compile Include="DeployWindows.ps1" />
     <Compile Include="FlashUefi.ps1" />
     <Compile Include="CreateWindowsPartitions.ps1" />

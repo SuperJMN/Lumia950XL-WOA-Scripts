@@ -86,7 +86,7 @@ function Step
 function Scripted-Step
 {
 	param([string]$message,[string]$script) 	
-	Step($message)
+	Step $message
 	& $script
 }
 

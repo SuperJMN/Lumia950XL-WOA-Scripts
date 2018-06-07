@@ -2,15 +2,18 @@
 
 function GetBootMgrPartitionPath()
 {
-	$match = & bcdedit /enum `{bootmgr`} | Select-String  "device\s*partition=(?<path>[\w*\\]*)"
-	$bootMgrPartitionPath = $match.Matches[0].Groups[1].Value
+    param([string] $bcdFileName)
 
-	if ($bootMgrPartitionPath -eq $null)
+    $bootMgrPartitionPath = bcdedit /store $bcdFileName /enum `{bootmgr`} |
+      Select-String -Pattern '\{bootmgr\}' -context 1|
+        ForEach-Object { ($_.Context.PostContext.Split('=')[1]) }
+
+    if ($bootMgrPartitionPath -eq $null)
 	{
-		throw "Could not get the partition path of the {bootmgr} BCD entry"
-	}
+        throw "Could not get the partition path of the {bootmgr} BCD entry"
+    }
 
-	return $bootMgrPartitionPath
+    return $bootMgrPartitionPath
 }
 
 function CreateShimBcdEntry() 
@@ -33,7 +36,7 @@ Read-Host
 
 $guid = CreateShimBcdEntry $bcdFileName
 
-$bootMgrPartitionPath = GetBootMgrPartitionPath
+$bootMgrPartitionPath = GetBootMgrPartitionPath $bcdFileName
 
 & bcdedit /store $bcdFileName /set $guid device partition=$bootMgrPartitionPath
 & bcdedit /store $bcdFileName /set `{bootmgr`} displaybootmenu on

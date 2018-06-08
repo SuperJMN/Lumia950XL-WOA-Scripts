@@ -3,7 +3,7 @@
 $volume = GetDataVolume
 $driveLetter = $volume.DriveLetter
 
-Step "We are going to resize the Data partition at drive $($driveLetter) to 7.5GB."
+Step "We are going to resize the Data partition at drive $($driveLetter) to 7.5GB. Please, verify the drive letter is correct."
 
 Write-Host "Working..."
 

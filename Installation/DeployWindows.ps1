@@ -1,7 +1,6 @@
 . "$PSScriptRoot\Functions.ps1"
 
-Write-Host "Mount the Windows 10 ARM .ISO image you want to apply"
-Read-Host "Press Enter when ready"
+Step "Please, mount the Windows 10 ARM .ISO image you want to apply. The path will be auto-discovered."
 
 Write-Host "Working..."
 

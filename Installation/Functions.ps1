@@ -79,7 +79,6 @@ function GetImageLetter()
 function Step
 {
 	param([string]$message) 	
-	Write-Host $message
 	Read-Host -Prompt $message 	
 }
 

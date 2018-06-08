@@ -16,11 +16,15 @@ function GetBootMgrPartitionPath()
     return $bootMgrPartitionPath
 }
 
-function CreateShimBcdEntry() 
+function SetupBootShimEntry() 
 {
 	param([string]$bcdFileName)
+
 	$output = & bcdedit /store $($bcdFileName) /create /d ""BootShim"" /application BOOTAPP
 	$guid = $output|%{$_.split(' ')[2]}
+
+	& bcdedit /store $bcdFileName /set $guid path \EFI\boot\BootShim.efi
+
 	return $guid
 }
 
@@ -34,7 +38,7 @@ Write-Host "We're going to modify the BCD file at $($bcdFileName)"
 Write-Host "Press ENTER to proceed"
 Read-Host
 
-$guid = CreateShimBcdEntry $bcdFileName
+$guid = SetupBootShimEntry $bcdFileName
 
 $bootMgrPartitionPath = GetBootMgrPartitionPath $bcdFileName
 

@@ -43,6 +43,6 @@ $bootMgrPartitionPath = GetBootMgrPartitionPath $bcdFileName
 & bcdedit /store $bcdFileName /deletevalue `{bootmgr`} customactions 
 & bcdedit /store $bcdFileName /deletevalue `{bootmgr`} custom:54000001 
 & bcdedit /store $bcdFileName /deletevalue `{bootmgr`} custom:54000002 
-& bcdedit /store $bcdFileName /displayorder $guid `{0ff5f24a-3785-4aeb-b8fe-4226215b88c4`} `{bd8951c4-eabd-4c6f-aafb-4ddb4eb0469b`}
+& bcdedit /store $bcdFileName /displayorder $guid `{default`}
 & bcdedit /store $bcdFileName /set $guid testsigning on 
 & bcdedit /store $bcdFileName /set $guid nointegritychecks on

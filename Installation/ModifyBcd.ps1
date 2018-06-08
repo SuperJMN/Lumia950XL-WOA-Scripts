@@ -1,21 +1,5 @@
 . "$PSScriptRoot\Functions.ps1"
 
-function GetBootMgrPartitionPath()
-{
-    param([string] $bcdFileName)
-
-    $bootMgrPartitionPath = bcdedit /store $bcdFileName /enum `{bootmgr`} |
-      Select-String -Pattern '\{bootmgr\}' -context 1|
-        ForEach-Object { ($_.Context.PostContext.Split('=')[1]) }
-
-    if ($bootMgrPartitionPath -eq $null)
-	{
-        throw "Could not get the partition path of the {bootmgr} BCD entry"
-    }
-
-    return $bootMgrPartitionPath
-}
-
 function SetupBootShimEntry() 
 {
 	param([string]$bcdFileName)

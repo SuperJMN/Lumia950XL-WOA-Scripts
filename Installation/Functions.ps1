@@ -76,6 +76,22 @@ function GetImageLetter()
 	throw 'Could find INSTALL.WIM in any of the mounted drives. Please, verify that you mounted the .ISO drive correctly.'		 
 }
 
+function GetBootMgrPartitionPath()
+{
+    param([string] $bcdFileName)
+
+    $bootMgrPartitionPath = bcdedit /store $bcdFileName /enum `{bootmgr`} |
+      Select-String -Pattern '\{bootmgr\}' -context 1|
+        ForEach-Object { ($_.Context.PostContext.Split('=')[1]) }
+
+    if ($bootMgrPartitionPath -eq $null)
+	{
+        throw "Could not get the partition path of the {bootmgr} BCD entry"
+    }
+
+    return $bootMgrPartitionPath
+}
+
 function Step
 {
 	param([string]$message) 	

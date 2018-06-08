@@ -79,7 +79,7 @@ function GetImageLetter()
 function Step
 {
 	param([string]$message) 	
-	Read-Host -Prompt $message 	
+	Read-Host -Prompt "$($message). Press enter to continue."
 }
 
 function Scripted-Step

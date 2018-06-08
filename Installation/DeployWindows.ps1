@@ -3,6 +3,8 @@
 Write-Host "Mount the Windows 10 ARM .ISO image you want to apply"
 Read-Host "Press Enter when ready"
 
+Write-Host "Working..."
+
 $imageLetter = GetImageLetter
 
 $deploymentDestination = "W:\"

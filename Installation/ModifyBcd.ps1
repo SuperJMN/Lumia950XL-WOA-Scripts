@@ -28,6 +28,8 @@ function SetupBootShimEntry()
 	return $guid
 }
 
+Write-Host "Working..."
+
 $mainOs = GetMainOS
 $volume = $mainOs.Volume
 $driveLetter = $volume.DriveLetter

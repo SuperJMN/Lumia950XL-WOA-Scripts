@@ -3,7 +3,9 @@
 $mainOs = GetMainOS
 $diskNumber = $mainOs.Disk.DiskNumber
 
-Write-Host "We're going to create the partitions in the Disk number $($diskNumber). Please, verify this is OK."
+Step "We're going to create the partitions in the Disk number $($diskNumber). Please, verify this is OK."
+
+Write-Host "Working..."
 
 New-Partition -DiskNumber $($diskNumber) -Size 100MB -DriveLetter "S"
 Format-Volume -FileSystem FAT32 -NewFileSystemLabel "SYSTEM" -DriveLetter "S" -Force

@@ -1,3 +1,5 @@
+Write-Host "Working..."
+
 $driverFolder = "$($PSScriptRoot)\Files\Drivers\Stable"
 $windowsImageDrive = 'W:\'
 

@@ -11,7 +11,7 @@ Scripted-Step "2. Data Partition Shrinking" "$($PSScriptRoot)\ResizeDataPartitio
 Scripted-Step "3. EXT4 partitions: In the following 2 steps you should create EXT4 partitions. You can do it inside using Linux (a Virtual Machine is OK). We recommend using the application called 'GParted' for that." "$($PSScriptRoot)\CreateExt4Partitions.ps1"
 Scripted-Step "4. Copy of Boot files" "$($PSScriptRoot)\CopyMbnAndEfi.ps1"
 Scripted-Step "5. Setup of BCD" "$($PSScriptRoot)\ModifyBcd.ps1"
-Step "6. We're about to add the Developer Menu" "$($PSScriptRoot)\CreateDeveloperMenu.ps1"
+Scripted-Step "6. We're about to add the Developer Menu" "$($PSScriptRoot)\CreateDeveloperMenu.ps1"
 Step "7. Please, reboot the phone (holding Power 10 seconds)"
 Step "8. Your phone should show a Boot Menu. Choose the BootShim item. Then, your phone will show text on the screen. Wait until your PC detects Android device. "
 Scripted-Step "9. We're about to flash UEFI.elf" "$($PSScriptRoot)\FlashUefi.ps1"

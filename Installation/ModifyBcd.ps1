@@ -7,7 +7,7 @@ function SetupBootShimEntry()
 	$output = & bcdedit /store $($bcdFileName) /create /d ""BootShim"" /application BOOTAPP
 	$guid = $output|%{$_.split(' ')[2]}
 
-	& bcdedit /store $bcdFileName /set $guid path \EFI\boot\BootShim.efi
+	$tmp = & bcdedit /store $bcdFileName /set $guid path \EFI\boot\BootShim.efi
 
 	return $guid
 }

@@ -4,6 +4,9 @@ Write-Host "Windows ARM 64 installation scripts" -ForegroundColor Green
 Write-Host "<< You can quit anytime pressing Control+C >>" -ForegroundColor Yellow 
 
 Step "1. Please, switch to Mass Storage Mode."
+
+EnsurePartitionsAreMounted
+
 Scripted-Step "2. Data Partition Shrinking" "$($PSScriptRoot)\ResizeDataPartition.ps1"
 Scripted-Step "3. EXT4 partitions: In the following 2 steps you should create EXT4 partitions. You can do it inside using Linux (a Virtual Machine is OK). We recommend using the application called 'GParted' for that." "$($PSScriptRoot)\CreateExt4Partitions.ps1"
 Scripted-Step "4. Copy of Boot files" "$($PSScriptRoot)\CopyMbnAndEfi.ps1"

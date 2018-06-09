@@ -1,3 +1,36 @@
+Function GetAvailableDriveLetter()
+{
+	$normalizedName = ls function:[d-z]: -n | ?{ !(test-path $_) } | select -First 1
+	$letter = $normalizedName[0]
+	return $letter;
+}
+
+function EnsurePartitionsAreMounted() 
+{
+	EnsurePartitionMountedForVolume 'EFIESP' 'FAT'
+	EnsurePartitionMountedForVolume 'MainOS' 'NTFS'
+	EnsurePartitionMountedForVolume 'Data' 'NTFS'
+}
+
+function EnsurePartitionMountedForVolume
+{
+	param([string]$label,[string]$fileSystemType) 
+
+	$vol = GetVolume $label $fileSystemType
+	
+	if ($vol -eq $null) 
+	{
+		throw "Could not get the volume with label $($label)"
+	}
+
+	if ($vol.DriveLetter -eq $null) 
+	{
+		$part = Get-Partition -Volume $vol
+		$freeLetter = GetAvailableDriveLetter		
+		$part | Set-Partition -NewDriveLetter $freeLetter
+	}
+}
+
 function GetMainOS()
 {
 	foreach ($disk in Get-Disk) 
@@ -33,7 +66,7 @@ function GetVolume()
 
 	if ($vol -eq $null)	
 	{	
-		throw $"Could not obtain the $label volume. Please, verify it is mounted and that your phone is in Mass Storage Mode"	
+		throw "Could not obtain the $($label) volume. Please, verify it is mounted and that your phone is in Mass Storage Mode"	
 	}
 
 	return $vol

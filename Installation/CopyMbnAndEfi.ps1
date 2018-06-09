@@ -3,7 +3,7 @@
 $mainOs = GetMainOS
 $driveLetter = $mainOs.Volume.DriveLetter
 
-Step "We are going copy the required files: BootShip.efi and emmc_appsboot.mbn to the appropriate folders in the $($driveLetter) drive."
+Step "We are going copy the required files: BootShim.efi and emmc_appsboot.mbn to the appropriate folders in the $($driveLetter) drive."
 
 Write-Host "Working..."
 

@@ -32,6 +32,8 @@
     <Folder Include="Files\Drivers\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ReinstallWindows.ps1" />
+    <Compile Include="RemovePreviousWindowsInstallationPartitions.ps1" />
     <Compile Include="EnableDualBoot.ps1" />
     <Compile Include="CreateDeveloperMenu.ps1" />
     <Compile Include="CreateExt4Partitions.ps1" />
@@ -39,12 +41,13 @@
     <Compile Include="FlashUefi.ps1" />
     <Compile Include="CreateWindowsPartitions.ps1" />
     <Compile Include="CopyMbnAndEfi.ps1" />
+    <Compile Include="FullSetup.ps1" />
     <Compile Include="Functions.ps1" />
     <Compile Include="MakeWindowsBootable.ps1" />
     <Compile Include="ResizeDataPartition.ps1" />
     <Compile Include="ModifyBcd.ps1" />
-    <Compile Include="Setup.ps1" />
     <Compile Include="InstallDrivers.ps1" />
+    <Compile Include="SetupWindows.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />

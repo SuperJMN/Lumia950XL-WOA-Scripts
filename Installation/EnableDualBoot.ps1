@@ -6,7 +6,7 @@ Write-Host "Working..."
 
 $sysVolume = GetSystemVolume
 
-Write-Host "Setting partition type to ESP..."
+Write-Host "Setting partition type to Basic..."
 $sysVolume | Set-Partition -GptType "{EBD0A0A2-B9E5-4433-87C0-68B6B72699C7}" 
 
 

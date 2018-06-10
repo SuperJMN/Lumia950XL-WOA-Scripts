@@ -5,6 +5,7 @@ Write-Host "<< You can quit anytime pressing Control+C >>" -ForegroundColor Yell
 
 Step "Please, switch to Mass Storage Mode."
 
+Write-Host "Ensuring the required Phone partitions are mounted..."
 EnsurePartitionsAreMounted
 
 Scripted-Step "Data Partition Shrinking" "$($PSScriptRoot)\ResizeDataPartition.ps1"

@@ -32,6 +32,7 @@
     <Folder Include="Files\Drivers\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnableDualBoot.ps1" />
     <Compile Include="CreateDeveloperMenu.ps1" />
     <Compile Include="CreateExt4Partitions.ps1" />
     <Compile Include="DeployWindows.ps1" />

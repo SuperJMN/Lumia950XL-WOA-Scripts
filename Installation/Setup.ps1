@@ -21,6 +21,7 @@ Scripted-Step "12. Windows 10 ARM image deployment" "$($PSScriptRoot)\DeployWind
 Scripted-Step "13. Drivers deployment" "$($PSScriptRoot)\InstallDrivers.ps1"
 Scripted-Step "14. We'll make the Windows partition bootable" "$($PSScriptRoot)\MakeWindowsBootable.ps1"
 Step "15. Reboot your phone. Select BootShim. Windows 10 ARM Setup should begin!"
+Scripted-Step "Please, complete the Windows Setup. We'll not enable Dual Boot" "$($PSScriptRoot)\EnableDualBoot.ps1"
 
 Write-Host "Setup completed ;)"
 

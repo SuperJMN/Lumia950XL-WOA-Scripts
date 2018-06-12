@@ -49,3 +49,5 @@ $guid = SetupBootShimEntry $bcdFileName
 SetupBootMgrEntry
 
 & bcdedit /store $bcdFileName /displayorder $guid
+& bcdedit /store $bcdFileName /default $guid
+& bcdedit /store $bcdFileName /timeout 30

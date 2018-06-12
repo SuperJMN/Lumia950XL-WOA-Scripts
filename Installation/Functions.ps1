@@ -72,6 +72,21 @@ function GetVolume()
 	return $vol
 }
 
+function GetReservedPartition() 
+{
+	$mainOs = GetMainOS
+	$disk = $mainOs.Disk
+	
+	$vol = $disk | Get-Partition | Where { $_.GptType -eq '{e3c9e316-0b5c-4db8-817d-f92df00215ae}' } 
+
+	if ($vol -eq $null)	
+	{	
+		throw "Could not obtain the Reserved partition. Please, verify it is mounted and that your phone is in Mass Storage Mode"	
+	}
+
+	return $vol
+}
+
 function GetWindowsVolume()
 {
 	return GetVolume "WindowsARM" "NTFS"
@@ -141,7 +156,8 @@ function Get-SystemInfo
 function Step
 {
 	param([string]$message) 	
-	Read-Host -Prompt "$($message). Press enter to continue."
+	Write-Host "$($message). Press [ENTER] to continue."
+	Read-Host
 }
 
 function Scripted-Step

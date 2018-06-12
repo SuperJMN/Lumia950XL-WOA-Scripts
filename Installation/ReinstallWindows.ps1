@@ -8,7 +8,7 @@ Step "Please, switch to Mass Storage Mode."
 Write-Host "Ensuring the required Phone partitions are mounted..."
 EnsurePartitionsAreMounted
 
-Scripted-Step "First, we are going to delete the existing Windows partitions in the Phone." "$($PSScriptRoot)\RemovePreviousWindowsInstallationPartitions.ps1"
+Scripted-Step "Deletion of Previous Windows installation.`nWe are about to delete the existing Windows installation. Proceed with caution." "$($PSScriptRoot)\RemovePreviousWindowsInstallationPartitions.ps1"
 Scripted-Step "We will now Install Windows 10 ARM64" "$($PSScriptRoot)\SetupWindows.ps1"
 
 Write-Host "Setup completed ;)"

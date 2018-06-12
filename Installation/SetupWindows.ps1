@@ -1,6 +1,6 @@
 . "$PSScriptRoot\Functions.ps1"
 
-Step "Please, switch to Mass Storage Mode"
+Step "Please, verify that your Phone is in Mass Storage Mode"
 Scripted-Step "Creation of partitions for Windows 10 ARM installation" "$($PSScriptRoot)\CreateWindowsPartitions.ps1"
 Scripted-Step "Windows 10 ARM image deployment" "$($PSScriptRoot)\DeployWindows.ps1"
 Scripted-Step "Drivers deployment" "$($PSScriptRoot)\InstallDrivers.ps1"

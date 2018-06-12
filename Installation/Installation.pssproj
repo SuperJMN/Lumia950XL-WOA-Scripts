@@ -32,6 +32,7 @@
     <Folder Include="Files\Drivers\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DisableDualBoot.ps1" />
     <Compile Include="ReinstallWindows.ps1" />
     <Compile Include="RemovePreviousWindowsInstallationPartitions.ps1" />
     <Compile Include="EnableDualBoot.ps1" />

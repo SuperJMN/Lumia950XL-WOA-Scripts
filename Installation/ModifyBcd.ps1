@@ -3,9 +3,19 @@
 function SetupBootShimEntry() 
 {
 	param([string]$bcdFileName)
+	
+	$locale = Get-SystemInfo
+	
+	$index = 2;
+
+	# FIXED : zh-cn Build OS should  set the index to 1(other East Asia country should also be 1 )
+	$locale_array = 'zh-cn', 'zh-tw', 'ja-jp', 'ko-kr'
+	if ($locale_array.Contains($locale)){
+		$index = 1;
+	}
 
 	$output = & bcdedit /store $($bcdFileName) /create /d ""BootShim"" /application BOOTAPP
-	$guid = $output|%{$_.split(' ')[2]}
+	$guid = $output|%{$_.split(' ')[$index]}
 
 	$tmp = & bcdedit /store $bcdFileName /set $guid path \EFI\boot\BootShim.efi
 

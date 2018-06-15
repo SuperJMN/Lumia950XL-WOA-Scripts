@@ -8,8 +8,10 @@ The main script is [`FullSetup.ps1`](https://github.com/SuperJMN/Lumia950XL-WOA-
 - If you want to use the script as a reference, it's also OK. Just take a look and execute each script in order, doing what they tell you to do :)
 - There are sub-scripts that are called from the main script. You can use them to execute only one part of the process.
 
-# Binaries (AKA Files)
+# Binaries (AKA "the Files")
 For the scripts to run, you have to copy the contents of [this Folder](https://1drv.ms/f/s!AtXoQFW327DIyLRZLgLlmpx17zXeyw) inside the folder named `Installation`. 
+
+Inside you will find Drivers, the UEFI, flashing tools... everything the scripts need to work :)
 
 # Questions, problems? 
 

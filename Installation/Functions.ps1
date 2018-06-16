@@ -99,7 +99,7 @@ function GetDataVolume()
 
 function GetSystemVolume()
 {
-	return GetVolume "System" "FAT32"
+	return GetVolume "BOOT" "FAT32"
 }
 
 function GetImageLetter()
@@ -156,7 +156,7 @@ function Get-SystemInfo
 function Step
 {
 	param([string]$message) 	
-	Write-Host "$($message). Press [ENTER] to continue."
+	Write-Host "$($message)`nPress [ENTER] to continue."
 	Read-Host
 }
 

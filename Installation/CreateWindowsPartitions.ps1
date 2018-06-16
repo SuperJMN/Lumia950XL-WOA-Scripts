@@ -4,10 +4,7 @@ function CreateEspPartition()
 {
 	param([int] $diskNumber)
 
-	$p = New-Partition -DiskNumber $($diskNumber) -Size 400MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}'
-	
-	$p | Format-Volume -FileSystem FAT32 -NewFileSystemLabel "SYSTEM" -Force
-	$p | Set-Partition -NewDriveLetter "S"
+	New-Partition -DiskNumber $($diskNumber) -Size 400MB -GptType '{c12a7328-f81f-11d2-ba4b-00a0c93ec93b}' -DriveLetter S | Format-Volume -FileSystem FAT32 -NewFileSystemLabel "BOOT" -Force		
 }
 
 function CreateReservedPartition() 
@@ -21,9 +18,7 @@ function CreateWindowsPartition()
 {
 	param([int] $diskNumber)	
 
-	$p = New-Partition -DiskNumber $($diskNumber) -UseMaximumSize
-	$p | Format-Volume -FileSystem NTFS -NewFileSystemLabel "WindowsARM" -Force
-	$p | Set-Partition -NewDriveLetter "W"
+	New-Partition -DiskNumber $($diskNumber) -UseMaximumSize -DriveLetter W | Format-Volume -FileSystem NTFS -NewFileSystemLabel "WindowsARM" -Force		
 }
 
 $mainOs = GetMainOS

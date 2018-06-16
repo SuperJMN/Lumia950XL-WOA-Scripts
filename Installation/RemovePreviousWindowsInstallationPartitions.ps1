@@ -33,7 +33,7 @@ Step "We're going to delete the partitions of the previous Windows Installation.
 Write-Host "Working..."
 
 RemoveReserved
-RemovePartition 'System' 'FAT32'
+RemovePartition 'BOOT' 'FAT32'
 RemovePartition 'WindowsARM' 'NTFS'
 
 Write-Host "Done!"

@@ -14,7 +14,8 @@ $driveLetter = $volume.DriveLetter
 
 $bcdFileName = "$($driveLetter):\EFIESP\EFI\Microsoft\BOOT\BCD"
 
-& bcdedit /store $bcdFileName /set `{default`} description "Windows Phone"
-& bcdedit /store $bcdFileName /displayorder `{default`} /addlast
+$winPhoneBcdGuid = "{7619dcc9-fafe-11d9-b411-000476eba25f}"
+& bcdedit /store $bcdFileName /set $winPhoneBcdGuid description "Windows 10 Phone"
+& bcdedit /store $bcdFileName /displayorder $winPhoneBcdGuid /addlast
 
 Write-Host "Done!"

@@ -2,8 +2,10 @@
 
 Write-Host "Windows ARM 64 installation scripts" -ForegroundColor Green 
 Write-Host "<< You can quit anytime pressing Control+C >>" -ForegroundColor Yellow 
+Write-Host "Please, ensure that your PC is not using the drive letters S: and W:, since they're used by the scripts.`nIf they're used, unmount them temporarily." -ForegroundColor Red
+Write-Host
 
-Step "Please, switch to Mass Storage Mode."
+Step "Now, please, switch to Mass Storage Mode."
 
 Write-Host "Ensuring the required Phone partitions are mounted..."
 EnsurePartitionsAreMounted

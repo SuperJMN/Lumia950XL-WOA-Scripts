@@ -140,6 +140,55 @@ function GetBootMgrPartitionPath()
     return $bootMgrPartitionPath
 }
 
+function Get-BcdEntries() 
+{
+	param([string] $BcdPath)
+
+	if ($BcdPath -ne "") 
+	{
+		$rawOutput = & bcdedit /store $BcdPath /enum all 
+	} else {
+		$rawOutput = & bcdedit /enum all 
+	}
+
+	$rawOutput = & bcdedit $BcdPath /enum all 
+	$bcdOutput = $rawOutput -join "`n" -replace '\}\n\s+\{','},{'
+
+	# Create the output list.
+	$entries = New-Object System.Collections.Generic.List[pscustomobject]]
+
+	# Parse bcdedit's output into entry blocks and construct a hashtable of
+	# property-value pairs for each.
+	($bcdOutput -split '(?m)^([a-z].+)\n-{10,100}\n').ForEach({
+	  if ($_ -notmatch '  +') {
+		$entries.Add([pscustomobject] @{ Name = $_; Properties = [ordered] @{} })
+	  } else {
+		($_ -split '\n' -ne '').ForEach({
+		  $keyValue = $_ -split '\s+', 2
+		  $entries[-1].Properties[$keyValue[0]] = $keyValue[1]
+		})
+	  }
+	})
+	
+	return $entries 
+}
+
+function GetBcdEntryProperty()
+{
+	param([string] $entry, [string] $property)
+
+	$regex = "$($property)\s*(?<value>[\w*\\]*)"
+    $match = & bcdedit /enum $entry | Select-String $regex
+    $bootMgrPartitionPath = $match.Matches[0].Groups[1].Value
+
+    if ($bootMgrPartitionPath -eq $null)
+    {
+        throw "Could not get the given property $($property) from the entry $($entry)"
+    }
+
+    return $bootMgrPartitionPath
+}
+
 function Get-SystemInfo
 {
   param($ComputerName = $env:COMPUTERNAME)
@@ -166,4 +215,3 @@ function Scripted-Step
 	Step $message
 	& $script
 }
-

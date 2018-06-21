@@ -140,6 +140,15 @@ function GetBootMgrPartitionPath()
     return $bootMgrPartitionPath
 }
 
+function InstallDrivers()
+{
+	param([string] $driverFolder) 
+	
+	Write-Host "Working..."
+	$windowsImageDrive = 'W:\'
+	Dism /Image:$($windowsImageDrive) /Add-Driver /Driver:$($driverFolder) /Recurse /ForceUnsigned
+}
+
 function Get-BcdEntries() 
 {
 	param([string] $BcdPath)
@@ -209,9 +218,9 @@ function Step
 	Read-Host
 }
 
-function Scripted-Step
+function Function-Step
 {
-	param([string]$message,[string]$script) 	
+	param([string]$message,[ScriptBlock]$block) 	
 	Step $message
-	& $script
+	$block.Invoke()
 }

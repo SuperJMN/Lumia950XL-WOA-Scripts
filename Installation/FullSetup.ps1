@@ -10,16 +10,11 @@ Step "Now, please, switch to Mass Storage Mode."
 Write-Host "Ensuring the required Phone partitions are mounted..."
 EnsurePartitionsAreMounted
 
-Function-Step "Data Partition Shrinking" { & $PSScriptRoot\ResizeDataPartition.ps1 }
-Function-Step "Special Partitions: In the following 2 steps you should create 2 special partitions." { & $PSScriptRoot\CreateUefiPartitions.ps1 }
-Function-Step "Copy of Boot files" { & $PSScriptRoot\CopyMbnAndEfi.ps1 }
-Function-Step "Setup of BCD" { & $PSScriptRoot\ModifyBcd.ps1 }
-Function-Step "We're about to add the Developer Menu" { & $PSScriptRoot\CreateDeveloperMenu.ps1 }
-Step "Please, reboot the phone (holding Power for 10 seconds)"
-Step "Your phone should show a Boot Menu. Choose the BootShim item. Then, your phone will show text on the screen. Wait until your PC detects Android device. "
-Function-Step "We're about to flash UEFI.elf" { & $PSScriptRoot\FlashUefi.ps1 }
-
-Function-Step "We will now Install Windows 10 ARM64" { & $PSScriptRoot\SetupWindows.ps1 }
+Function-Step "UEFI Deployment" { & $PSScriptRoot\DeployUefi.ps1 }
+Function-Step "BCD Setup (EFIESP)" { & $PSScriptRoot\ModifyBcd.ps1 }
+Function-Step "Creation of Developer Menu" { & $PSScriptRoot\CreateDeveloperMenu.ps1 }
+Function-Step "Windows 10 ARM64 Setup" { & $PSScriptRoot\SetupWindows.ps1 }
+Function-Step "Dual Boot" { & $PSScriptRoot\EnableDualBoot.ps1 }
 
 Write-Host "Setup completed ;)"
 

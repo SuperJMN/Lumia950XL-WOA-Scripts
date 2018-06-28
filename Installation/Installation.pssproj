@@ -34,14 +34,12 @@
   <ItemGroup>
     <Compile Include="DisableDualBoot.ps1" />
     <Compile Include="ReinstallWindows.ps1" />
-    <Compile Include="RemovePreviousWindowsInstallationPartitions.ps1" />
+    <Compile Include="AllocateSpaceIfNeeded.ps1" />
     <Compile Include="EnableDualBoot.ps1" />
     <Compile Include="CreateDeveloperMenu.ps1" />
-    <Compile Include="CreateUefiPartitions.ps1" />
     <Compile Include="DeployWindows.ps1" />
-    <Compile Include="FlashUefi.ps1" />
     <Compile Include="CreateWindowsPartitions.ps1" />
-    <Compile Include="CopyMbnAndEfi.ps1" />
+    <Compile Include="DeployUefi.ps1" />
     <Compile Include="FullSetup.ps1" />
     <Compile Include="Functions.ps1" />
     <Compile Include="MakeWindowsBootable.ps1" />

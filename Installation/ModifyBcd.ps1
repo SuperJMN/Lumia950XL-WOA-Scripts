@@ -8,7 +8,7 @@ function SetupBootShimEntry()
 	
 	$index = 2;
 
-	# FIXED : zh-cn Build OS should  set the index to 1(other East Asia country should also be 1 )
+	# FIXED : zh-cn Build OS should set the index to 1 (other East Asia country should also be 1 )
 	$locale_array = 'zh-cn', 'zh-tw', 'ja-jp', 'ko-kr'
 	if ($locale_array.Contains($locale)){
 		$index = 1;
@@ -17,7 +17,7 @@ function SetupBootShimEntry()
 	$output = & bcdedit /store $($bcdFileName) /create /d ""BootShim"" /application BOOTAPP
 	$guid = $output|%{$_.split(' ')[$index]}
 
-	$tmp = & bcdedit /store $bcdFileName /set $guid path \EFI\boot\BootShim.efi
+	$tmp = & bcdedit /store $bcdFileName /set $guid path \BootShim.efi
 
     $bootMgrPartitionPath = GetBootMgrPartitionPath $bcdFileName
 	$tmp = & bcdedit /store $bcdFileName /set $guid device partition=$bootMgrPartitionPath

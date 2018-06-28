@@ -1,6 +1,7 @@
 . "$PSScriptRoot\Functions.ps1"
 
-Step "Disabling Dual Boot..."
+Step "Please, make sure you are in Mass Storage Mode before proceeding."
+Write-Host "Disabling Dual Boot..."
 
 $sysVolume = GetSystemVolume
 

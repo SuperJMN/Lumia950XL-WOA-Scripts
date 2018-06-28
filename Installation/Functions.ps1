@@ -16,7 +16,6 @@ function EnsureCorrectFilesFolder()
 {
 	$paths = 
 	(
-		"Pepito",
 		"Core\BootShim.efi",
 		"Core\UEFI.elf",
 		"Drivers",

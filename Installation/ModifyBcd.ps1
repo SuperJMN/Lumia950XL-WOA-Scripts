@@ -17,7 +17,7 @@ function SetupBootShimEntry()
 	$output = & bcdedit /store $($bcdFileName) /create /d ""BootShim"" /application BOOTAPP
 	$guid = $output|%{$_.split(' ')[$index]}
 
-	$tmp = & bcdedit /store $bcdFileName /set $guid path \BootShim.efi
+	$tmp = & bcdedit /store $bcdFileName /set $guid path \EFI\boot\BootShim.efi
 
     $bootMgrPartitionPath = GetBootMgrPartitionPath $bcdFileName
 	$tmp = & bcdedit /store $bcdFileName /set $guid device partition=$bootMgrPartitionPath

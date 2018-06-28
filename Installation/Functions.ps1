@@ -12,6 +12,30 @@ function EnsurePartitionsAreMounted()
 	EnsurePartitionMountedForVolume 'Data' 'NTFS'
 }
 
+function EnsureCorrectFilesFolder() 
+{
+	$paths = 
+	(
+		"Pepito",
+		"Core\BootShim.efi",
+		"Core\UEFI.elf",
+		"Drivers",
+		"Developer Menu"
+	)
+
+	Write-Host "Checking the binary Files folder..."
+	
+	foreach ($path in $paths) 
+	{
+		$fullPath = (Join-Path $PSScriptRoot (Join-Path "Files" $path))
+		Write-Host "Checking for path" $fullPath
+		if (!(Test-Path $fullPath))
+		{
+			throw "Sanity check: The Files folder required by the script seems to be incomplete. Could not find '$fullPath'. Did you copy 'the Files' under the Installation\Files folder?"
+		}
+	}	
+}
+
 function EnsurePartitionMountedForVolume
 {
 	param([string]$label,[string]$fileSystemType) 

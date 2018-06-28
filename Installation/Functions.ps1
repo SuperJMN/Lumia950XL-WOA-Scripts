@@ -39,6 +39,7 @@ function EnsureCorrectFilesFolder()
 function EnsurePartitionMountedForVolume
 {
 	param([string]$label,[string]$fileSystemType) 
+	Write-Host "Ensuring the required Phone partitions are mounted..."
 
 	$vol = GetVolume $label $fileSystemType
 	
@@ -233,6 +234,12 @@ function Get-SystemInfo
     ConvertFrom-CSV -Header $header
       
   $info.'System Locale'|%{$_.split(';')[0]}
+}
+
+function PerformSanityChecks()
+{
+	EnsurePartitionsAreMounted
+	EnsureCorrectFilesFolder
 }
 
 function Step

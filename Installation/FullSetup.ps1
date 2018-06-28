@@ -7,8 +7,7 @@ Write-Host
 
 Step "Now, please, switch to Mass Storage Mode."
 
-Write-Host "Ensuring the required Phone partitions are mounted..."
-EnsurePartitionsAreMounted
+PerformSanityChecks
 
 Function-Step "UEFI Deployment" { & $PSScriptRoot\DeployUefi.ps1 }
 Function-Step "BCD Setup (EFIESP)" { & $PSScriptRoot\ModifyBcd.ps1 }

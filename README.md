@@ -4,8 +4,8 @@ Look for the scripts in the `Installation` folder.
 
 The main script is [`FullSetup.ps1`](https://github.com/SuperJMN/Lumia950XL-WOA-Scripts/blob/master/Installation/FullSetup.ps1)
 
-- If you want to do the whole process, execute `FullSetup.ps1` directly
-- If you need to reinstall Windows, run `ReinstallWindows.ps1`. Bear in mind that it will wipe the current installation!
+- If you have a fresh device (just unlocked and able to get into Mass Storage Mode) execute `FullSetup.ps1` directly
+- If you already have WoA but you want to reinstall it, run `ReinstallWindows.ps1`. Bear in mind that it will wipe the current installation!
 - If you want to use the script as a reference, it's also OK. Just take a look and execute each script in order, doing what they tell you to do :)
 - There are many sub-scripts that are called from the main script. They are thought to be use by experienced users that know about the correct order and steps, so if you don't know exactly what they do, don't run them!
 

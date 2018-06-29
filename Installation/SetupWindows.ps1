@@ -8,3 +8,4 @@ Function-Step "Basic Drivers deployment" { InstallDrivers "$($PSScriptRoot)\File
 Function-Step "Windows Boot Configuration" { & $PSScriptRoot\MakeWindowsBootable.ps1 }
 Step "Reboot your phone. Select BootShim. Windows 10 ARM Setup should begin!`nPlease, COMPLETE THE WINDOWS SETUP until you get into the Desktop.`nThen, Restart/Shut down (from Windows) and switch to Mass Storage Mode again."
 Function-Step "Additional Drivers deployment" { InstallDrivers "$($PSScriptRoot)\Files\Drivers\Testing" }
+Function-Step "Applying Hacks to Installation (enables additional features like BT and USB-C)" { & $PSScriptRoot\ApplyHacks.ps1 }

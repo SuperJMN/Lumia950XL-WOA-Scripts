@@ -45,6 +45,7 @@
     <Compile Include="MakeWindowsBootable.ps1" />
     <Compile Include="ResizeDataPartition.ps1" />
     <Compile Include="ModifyBcd.ps1" />
+    <Compile Include="ApplyHacks.ps1" />
     <Compile Include="SetupWindows.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

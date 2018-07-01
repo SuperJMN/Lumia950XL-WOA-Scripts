@@ -43,6 +43,7 @@
     <Compile Include="FullSetup.ps1" />
     <Compile Include="Functions.ps1" />
     <Compile Include="MakeWindowsBootable.ps1" />
+    <Compile Include="RemovalOfPreviousWindowsInstallation.ps1" />
     <Compile Include="ResizeDataPartition.ps1" />
     <Compile Include="ModifyBcd.ps1" />
     <Compile Include="ApplyHacks.ps1" />

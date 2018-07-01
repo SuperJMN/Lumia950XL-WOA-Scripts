@@ -1,57 +1,15 @@
 . "$PSScriptRoot\Functions.ps1"
 
-function RemovePartition() 
-{
-	param([string] $label, [string] $fileSytemFormat)
-
-	try 
-	{
-		$vol = GetVolume $label $fileSytemFormat
-		$vol | Get-Partition | Remove-Partition
-	}
-	catch 
-	{
-		Write-Host "The $($label) partition couldn't be removed. It might not exist."
-	}
-}
-
-function RemoveReserved() 
-{
-	try 
-	{
-		$part = GetReservedPartition
-		$part | Remove-Partition 
-	} 
-	catch 
-	{
-		Write-Host "The Reserved partition couldn't be removed. It might not exist."
-	}	
-}
-
-function RemoveExistingWindowsPartitions() 
-{
-	RemoveReserved
-	RemovePartition 'BOOT' 'FAT32'
-	RemovePartition 'WindowsARM' 'NTFS'
-}
-
-function RemoveExistingWindowsPartitions() 
-{
-	RemoveReserved
-	RemovePartition 'BOOT' 'FAT32'
-	RemovePartition 'WindowsARM' 'NTFS'
-}
-
 function GetAvailableSpace()
 {
 	param($disk) 
 
-	return $($disk.Size) -$($disk.AllocatedSize)		
+	return $disk.Size -$disk.AllocatedSize
 }
 
 function IsMoreSpaceNeeded() 
 {
-	Param ([switch]$verbose)
+	Param ($disk)
 	$requiredGBs = 18
 	$availableSpace = GetAvailableSpace $disk
 	$spaceNeeded = $requiredGBs * 1000000000
@@ -64,14 +22,21 @@ function IsMoreSpaceNeeded()
 
 function AllocateSpaceIfNeeded() 
 {
-	if (IsMoreSpaceNeeded)
+	param($disk)
+
+	Write-Host "Checking for free space..."
+	if (IsMoreSpaceNeeded $disk)
 	{
+		Write-Host "We need will to take space from the Data partition in order to install Windows"
+
 		if (IsDataPartitionPresent)
-		{
+		{			
+			Write-Host "Data partition is present"
 			ShrinkDataPartition
 		} 
 		else 
 		{
+			Write-Warning "Data partition not found. We can't take the necessary space!"
 			throw "The Phone doesn't have available space to install Windows ARM 64"
 		}
 	}
@@ -104,5 +69,7 @@ function ShrinkDataPartition()
 	Write-Host "Done!"
 }
 
+$mainOs = GetMainOS
+$disk = $mainOs.Disk
 
-AllocateSpaceIfNeeded
+AllocateSpaceIfNeeded $disk

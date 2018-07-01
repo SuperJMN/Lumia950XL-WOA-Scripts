@@ -7,6 +7,8 @@ Function GetAvailableDriveLetter()
 
 function EnsurePartitionsAreMounted() 
 {
+	Write-Host "Ensuring the required Phone partitions are mounted..."
+
 	EnsurePartitionMountedForVolume 'EFIESP' 'FAT'
 	EnsurePartitionMountedForVolume 'MainOS' 'NTFS'
 	EnsurePartitionMountedForVolume 'Data' 'NTFS'
@@ -38,8 +40,7 @@ function EnsureCorrectFilesFolder()
 function EnsurePartitionMountedForVolume
 {
 	param([string]$label,[string]$fileSystemType) 
-	Write-Host "Ensuring the required Phone partitions are mounted..."
-
+	
 	$vol = GetVolume $label $fileSystemType
 	
 	if ($vol -eq $null) 

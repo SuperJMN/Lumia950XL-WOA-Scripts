@@ -10,6 +10,6 @@ Step ".WIM image found in $($imageLetter) drive."
 
 $deploymentDestination = "W:\"
 
-& DISM.exe /Apply-Image /ImageFile:$($imageLetter):\sources\install.wim /Index:1 /ApplyDir:$($deploymentDestination)
+& "DISM.exe" /Apply-Image /ImageFile:$($imageLetter):\sources\install.wim /Index:1 /ApplyDir:$($deploymentDestination)
 
 Write-Host "Done!"

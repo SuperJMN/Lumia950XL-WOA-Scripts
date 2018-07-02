@@ -251,7 +251,7 @@ function Step
 
 function Function-Step
 {
-	param([string]$message,[ScriptBlock]$block) 	
+	param([string]$message,[ScriptBlock] $block) 	
 	Step $message
-	& $block.Invoke()
+	& $block
 }

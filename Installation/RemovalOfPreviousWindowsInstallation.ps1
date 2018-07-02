@@ -34,3 +34,5 @@ function RemoveExistingWindowsPartitions()
 	RemovePartition 'BOOT' 'FAT32'
 	RemovePartition 'WindowsARM' 'NTFS'
 }
+
+RemoveExistingWindowsPartitions

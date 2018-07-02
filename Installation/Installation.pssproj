@@ -27,11 +27,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Files\" />
-    <Folder Include="Files\Core\" />
-    <Folder Include="Files\Drivers\" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="DisableDualBoot.ps1" />
     <Compile Include="ReinstallWindows.ps1" />
     <Compile Include="AllocateSpaceIfNeeded.ps1" />
